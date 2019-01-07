@@ -1,0 +1,21 @@
+{
+    "popularity": 608.999,
+    "vote_count": 1880,
+    "video": false,
+    "poster_path": "/5Kg76ldv7VxeX9YlcQXiowHgdX6.jpg",
+    "id": 297802,
+    "adult": false,
+    "backdrop_path": "/5A2bMlLfJrAfX9bqAibOL2gCruF.jpg",
+    "original_language": "en",
+    "original_title": "Aquaman",
+    "genre_ids": [
+        28,
+        12,
+        14,
+        878
+    ],
+    "title": "Aquaman",
+    "vote_average": 7,
+    "overview": "Arthur Curry learns that he is the heir to the underwater kingdom of Atlantis, and must step forward to lead his people and be a hero to the world.",
+    "release_date": "2018-12-21"
+}
