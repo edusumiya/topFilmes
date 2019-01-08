@@ -42,7 +42,7 @@ class TopMoviesRepository: NSObject {
                     }
                 }
             } else {
-                failure(response.result.error ?? NSError(domain: "Internal Server Error", code: 500, userInfo: nil))
+                failure(response.result.error ?? NSError(domain: Localization.errorRetrieveDatabase.localized, code: 500, userInfo: nil))
             }
         }
     }

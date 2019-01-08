@@ -45,15 +45,26 @@ class MoviesListDatasourceAndDelegates: NSObject, UICollectionViewDataSource, UI
         moviesCollectionView?.delegate = self
     }
     
-    // MARK: - Model Encapsulation
+    // MARK: - Methods
+    
+    /// Append movies list
+    ///
+    /// - Parameter newMoviesList: movies for append
     func appendMoviesList(newMoviesList: [MovieModel]) {
         moviesList?.append(contentsOf: newMoviesList)
     }
     
+    /// Refresh the movies list
+    ///
+    /// - Parameter newMoviesList: movies for refresh
     func updateMoviesList(newMoviesList: [MovieModel]) {
         moviesList = newMoviesList
     }
     
+    
+    /// Returns the movies of dataSource
+    ///
+    /// - Returns: movies
     func requestMoviesList() -> [MovieModel]? {
         return moviesList
     }
@@ -95,6 +106,7 @@ class MoviesListDatasourceAndDelegates: NSObject, UICollectionViewDataSource, UI
         delegate?.didSelectMovie(movie: moviesList?[indexPath.item] ?? MovieModel())
     }
     
+    // MARK: - ScrollView
     func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
         let actualPosition = scrollView.panGestureRecognizer.translation(in: scrollView.superview)
         if (actualPosition.y < 0){

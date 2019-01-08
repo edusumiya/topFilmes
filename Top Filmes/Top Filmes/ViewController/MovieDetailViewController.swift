@@ -37,7 +37,7 @@ class MovieDetailViewController: UIViewController {
         
         setReleaseDate()
         
-        ratingLabel.text = "Rating: \(movie?.vote_average ?? 0)"
+        ratingLabel.text = "\(Localization.movieDetailViewControllerRating.localized) \(movie?.vote_average ?? 0)"
         overviewLabel.text = movie?.overview
     }
     
@@ -50,8 +50,6 @@ class MovieDetailViewController: UIViewController {
         
         if let date = dateFormatterGet.date(from: movie?.release_date ?? "") {
             releaseDateLabel.text = dateFormatterPrint.string(from: date)
-        } else {
-            print("There was an error decoding the string")
         }
     }
 }

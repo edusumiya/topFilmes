@@ -21,6 +21,7 @@ class MovieCollectionViewCell: UICollectionViewCell {
         }
     }
     
+    // MARK: - Lifecycle
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -28,6 +29,7 @@ class MovieCollectionViewCell: UICollectionViewCell {
         movieImageView?.image = nil
     }
     
+    // MARK: - Methods
     func configureCell() {
         movieDescriptionLabel?.text = movie?.title
         
@@ -49,6 +51,5 @@ class MovieCollectionViewCell: UICollectionViewCell {
         }) { (error) in
             print(error)
         }
-
     }
 }

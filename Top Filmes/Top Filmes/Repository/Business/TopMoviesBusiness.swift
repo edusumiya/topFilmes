@@ -26,7 +26,7 @@ class TopMoviesBusiness: NSObject {
             let movies = CoreDataRepository.getMoviesBackup()
             
             if movies.isEmpty {
-                failure(NSError(domain: "Failed to retrieve Data From Database", code: 0, userInfo: nil))
+                failure(NSError(domain: Localization.errorRetrieveDatabase.localized, code: 0, userInfo: nil))
                 
                 return
             }

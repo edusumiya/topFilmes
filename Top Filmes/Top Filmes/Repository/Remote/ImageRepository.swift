@@ -47,7 +47,7 @@ class ImageRepository: NSObject {
                 return
             }
             
-            failure(NSError(domain: "Failed to download image", code: 404, userInfo: nil))
+            failure(NSError(domain: Localization.errorfailDownload.localized, code: 404, userInfo: nil))
         }
     }
 }

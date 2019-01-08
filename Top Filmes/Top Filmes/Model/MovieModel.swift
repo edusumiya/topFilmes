@@ -21,6 +21,7 @@ class MovieModel: Decodable {
     var overview: String?
     var release_date: String?
     
+    // MARK: - Image Data
     var posterImage: Data?
     var backDropImage: Data?
 }

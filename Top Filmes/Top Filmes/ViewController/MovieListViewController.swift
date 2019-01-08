@@ -15,9 +15,8 @@ class MovieListViewController: UIViewController, MoviesListDelegate {
     @IBOutlet var moviesCollectionView: UICollectionView!
     @IBOutlet var searchView: UIView!
     @IBOutlet var searchViewHeight: NSLayoutConstraint!
+    private var searchController: UISearchController!
     private let refreshControl = UIRefreshControl()
-    var searchController : UISearchController!
-    
 
     // MARK: - DataSource
     var moviesDataSource: MoviesListDatasourceAndDelegates?
@@ -32,8 +31,6 @@ class MovieListViewController: UIViewController, MoviesListDelegate {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        CoreDataRepository.clearStorage()
 
         configureUI()
         requestData(page: currentPage, pullRequest: false)
@@ -43,16 +40,13 @@ class MovieListViewController: UIViewController, MoviesListDelegate {
         super .viewWillAppear(animated)
         
         NotificationCenter.default.addObserver(self, selector: #selector(reachabilityChanged(note:)), name: .reachabilityChanged, object: reachability)
-        do {
-            try reachability.startNotifier()
-        } catch {
-            print("could not start reachability notifier")
-        }
+        
+        try? reachability.startNotifier()
     }
     
     // MARK: - Configuration Methods
     fileprivate func configureUI() {
-        self.navigationItem.title = "Top Movies"
+        self.navigationItem.title = Localization.movieListViewControllerTitle.localized
         
         configureSearch()
     }
@@ -117,7 +111,7 @@ class MovieListViewController: UIViewController, MoviesListDelegate {
         
         switch reachability.connection {
         case .none:
-            MessageUtils.showToast(controller: self, message: "Lost Internet Connection - Offline Mode", seconds: 1)
+            MessageUtils.showToast(controller: self, message: Localization.warningLostConnection.localized, seconds: 1)
         default:
             return
         }
@@ -183,7 +177,6 @@ extension MovieListViewController: UISearchControllerDelegate, UISearchResultsUp
         }
         
         self.searchController.searchBar.removeFromSuperview()
-        
         UIView.animate(withDuration: 0.5, animations: {
             self.searchViewHeight.constant = 0
             self.view.layoutIfNeeded()
