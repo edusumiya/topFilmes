@@ -18,6 +18,7 @@ class MovieListViewController: UIViewController, MoviesListDelegate {
     private let refreshControl = UIRefreshControl()
     var searchController : UISearchController!
     
+
     // MARK: - DataSource
     var moviesDataSource: MoviesListDatasourceAndDelegates?
 
@@ -54,9 +55,6 @@ class MovieListViewController: UIViewController, MoviesListDelegate {
         self.navigationItem.title = "Top Movies"
         
         configureSearch()
-        
-        let searchButton = UIBarButtonItem(image: UIImage(named: "SearchIcon"), style: .plain, target: self, action: #selector(toggleSearch(_:)))
-        self.navigationItem.rightBarButtonItem = searchButton
     }
     
     fileprivate func configureRefreshControl() {
@@ -71,7 +69,8 @@ class MovieListViewController: UIViewController, MoviesListDelegate {
         searchController.delegate = self
         searchController.searchBar.delegate = self
         searchController.hidesNavigationBarDuringPresentation = false
-        searchController.dimsBackgroundDuringPresentation = true
+        searchController.dimsBackgroundDuringPresentation = false
+        searchController.searchBar.barStyle = UIBarStyle.blackTranslucent
         
         definesPresentationContext = true
     }
@@ -165,7 +164,7 @@ extension MovieListViewController: UISearchControllerDelegate, UISearchResultsUp
     }
     
     // MARK: - Search Control
-    @objc private func toggleSearch(_ sender: Any) {
+    @IBAction func showSearchBar(_ sender: Any) {
         let showSearch = (searchViewHeight.constant == 0)
         animateSearchAppearance(showSearch: showSearch)
         moviesDataSource?.infiniteScroll = !showSearch

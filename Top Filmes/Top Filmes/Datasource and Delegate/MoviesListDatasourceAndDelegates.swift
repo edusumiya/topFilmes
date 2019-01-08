@@ -94,4 +94,12 @@ class MoviesListDatasourceAndDelegates: NSObject, UICollectionViewDataSource, UI
         
         delegate?.didSelectMovie(movie: moviesList?[indexPath.item] ?? MovieModel())
     }
+    
+    func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
+        let actualPosition = scrollView.panGestureRecognizer.translation(in: scrollView.superview)
+        if (actualPosition.y < 0){
+            infiniteScroll = true
+            delegate?.removeSearch()
+        }
+    }
 }
