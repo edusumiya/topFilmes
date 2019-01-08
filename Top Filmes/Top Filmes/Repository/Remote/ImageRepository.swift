@@ -31,6 +31,8 @@ class ImageRepository: NSObject {
         switch imageSize {
         case .w200:
             imageUrl = ApiConstants.image200Url
+        case .w300:
+            imageUrl = ApiConstants.image300Url
         case .original:
             imageUrl = ApiConstants.imageOriginalUrl
         }

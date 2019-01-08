@@ -12,6 +12,7 @@ struct ApiConstants {
     // MARK: - URLs
     static let apiUrl: String = "https://api.themoviedb.org/3/"
     static let image200Url: String = "https://image.tmdb.org/t/p/w200/"
+    static let image300Url: String = "https://image.tmdb.org/t/p/w300/"
     static let imageOriginalUrl: String = "https://image.tmdb.org/t/p/original/"
     
     // MARK: - Endpoints

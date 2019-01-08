@@ -21,12 +21,19 @@ class MovieCollectionViewCell: UICollectionViewCell {
         }
     }
     
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        movieDescriptionLabel?.text = nil
+        movieImageView?.image = nil
+    }
+    
     func configureCell() {
         movieDescriptionLabel?.text = movie?.title
         
         if let movieImage = movie?.posterImage {
             movieImageView?.image = UIImage(data: movieImage)
-            
+
             return
         }
         
@@ -34,10 +41,10 @@ class MovieCollectionViewCell: UICollectionViewCell {
             self.movieImageView?.image = UIImage(data: imageData)
             self.movie?.posterImage = imageData
         }) { (error) in
-            
+            print(error)
         }
         
-        ImageRepository.downloadMovieImage(movieId: nil, imagePath: movie?.backdrop_path, imageSize: .original, isBackDrop: true, success: { (imageData) in
+        ImageRepository.downloadMovieImage(movieId: movie?.id, imagePath: movie?.backdrop_path, imageSize: .w300, isBackDrop: true, success: { (imageData) in
             self.movie?.backDropImage = imageData
         }) { (error) in
             print(error)

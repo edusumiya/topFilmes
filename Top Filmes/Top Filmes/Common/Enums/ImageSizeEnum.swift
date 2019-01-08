@@ -9,5 +9,6 @@
 import Foundation
 enum ImageSizeEnum {
     case w200
+    case w300
     case original
 }
