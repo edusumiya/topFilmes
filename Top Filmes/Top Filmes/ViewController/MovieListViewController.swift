@@ -14,11 +14,13 @@ class MovieListViewController: UIViewController, MoviesListDelegate {
         static let storyboardName: String = "Movie"
         static let movieDetailViewControllerName = "MovieDetailViewController"
     }
+    
     // MARK: - Properties
     @IBOutlet var moviesCollectionView: UICollectionView!
     @IBOutlet var searchView: UIView!
     @IBOutlet var searchViewHeight: NSLayoutConstraint!
     @IBOutlet var messageNoDataLabel: UILabel!
+    @IBOutlet var tryAgainButton: UIButton!
     
     private var searchController: UISearchController!
     private let refreshControl = UIRefreshControl()
@@ -36,8 +38,6 @@ class MovieListViewController: UIViewController, MoviesListDelegate {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        CoreDataRepository.clearStorage()
 
         configureUI()
         requestData(page: currentPage, pullRequest: false)
@@ -54,6 +54,9 @@ class MovieListViewController: UIViewController, MoviesListDelegate {
     // MARK: - Configuration Methods
     fileprivate func configureUI() {
         self.navigationItem.title = Localization.movieListViewControllerTitle.localized
+        
+        self.messageNoDataLabel.isHidden = false
+        self.tryAgainButton.isHidden = false
         
         configureSearch()
     }
@@ -80,7 +83,8 @@ class MovieListViewController: UIViewController, MoviesListDelegate {
     fileprivate func requestData(page: Int, pullRequest: Bool) {
         TopMoviesBusiness.getMovies(page: page, success: {(movies) in
             if let moviesResults = movies.results {
-                self.messageNoDataLabel.alpha = 0
+                self.messageNoDataLabel.isHidden = true
+                self.tryAgainButton.isHidden = true
                 if self.moviesDataSource == nil {
                     self.moviesDataSource = MoviesListDatasourceAndDelegates(moviesCollectionView: self.moviesCollectionView, moviesList: moviesResults, delegate: self)
                 } else {
@@ -105,9 +109,11 @@ class MovieListViewController: UIViewController, MoviesListDelegate {
                 return
             }
             
-            self.messageNoDataLabel.alpha = 1
+            self.messageNoDataLabel.isHidden = false
+            self.tryAgainButton.isHidden = false
         }) { (error) in
-            self.messageNoDataLabel.alpha = 1
+            self.messageNoDataLabel.isHidden = false
+            self.tryAgainButton.isHidden = false
         }
     }
     
@@ -127,6 +133,11 @@ class MovieListViewController: UIViewController, MoviesListDelegate {
         default:
             return
         }
+    }
+    
+    // MARK: - Actions
+    @IBAction func tryAgain(_ sender: Any) {
+        requestData(page: currentPage, pullRequest: false)
     }
     
     // MARK: - MoviesListDelegate
