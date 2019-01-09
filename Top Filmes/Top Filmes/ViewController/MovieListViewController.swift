@@ -31,6 +31,8 @@ class MovieListViewController: UIViewController, MoviesListDelegate {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //CoreDataRepository.clearStorage()
 
         configureUI()
         requestData(page: currentPage, pullRequest: false)

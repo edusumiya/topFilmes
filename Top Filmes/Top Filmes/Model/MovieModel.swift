@@ -9,7 +9,7 @@
 import Foundation
 
 class MovieModel: Decodable {
-    var id: Int?
+    var id: Double?
     var vote_average: Float?
     var title: String?
     var poster_path: String?

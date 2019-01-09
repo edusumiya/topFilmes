@@ -25,7 +25,7 @@ class ImageRepository: NSObject {
     ///   - imageSize: Size of Image
     ///   - success: success block
     ///   - failure: failure block
-    static func downloadMovieImage(movieId: Int?, imagePath: String?, imageSize: ImageSizeEnum, isBackDrop: Bool, success: @escaping SuccessImage, failure: @escaping Failure) {
+    static func downloadMovieImage(movieId: Double?, imagePath: String?, imageSize: ImageSizeEnum, isBackDrop: Bool, success: @escaping SuccessImage, failure: @escaping Failure) {
         var imageUrl: String = ""
         
         switch imageSize {

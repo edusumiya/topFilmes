@@ -4,7 +4,7 @@
         <attribute name="backdrop_path" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="backDropImage" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="genre_ids" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Double" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="original_language" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="original_title" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="overview" optional="YES" attributeType="String" syncable="YES"/>

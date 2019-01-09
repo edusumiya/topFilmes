@@ -26,16 +26,10 @@ class CoreDataRepository {
             
             fetchRequest.predicate = predicate
             
-            do {
-                let object = try context.fetch(fetchRequest)
-                
-                var movieObject: NSManagedObject
-                
-                if object.count > 0 {
-                    movieObject = object.first as! NSManagedObject
-                } else {
-                    movieObject = NSManagedObject(entity: entity!, insertInto: context)
-                }
+            let object = try? context.fetch(fetchRequest)
+            
+            if !(object?.count ?? 0 > 0) {
+                let movieObject = NSManagedObject(entity: entity!, insertInto: context)
                 
                 movieObject.setValue(movie.id, forKey: "id")
                 movieObject.setValue(movie.vote_average, forKey: "vote_average")
@@ -49,16 +43,12 @@ class CoreDataRepository {
                 movieObject.setValue(movie.release_date, forKey: "release_date")
                 movieObject.setValue(movie.posterImage, forKey: "posterImage")
                 movieObject.setValue(movie.backDropImage, forKey: "backDropImage")
-            } catch {
-                print(error)
+                
+                try? context.save()
             }
         }
+
         
-        do {
-            try context.save()
-        } catch {
-            print(error)
-        }
     }
     
     static func getMoviesBackup() -> [MovieModel] {
@@ -73,7 +63,7 @@ class CoreDataRepository {
             for data in result as! [NSManagedObject] {
                 let movie = MovieModel()
                 
-                movie.id = data.value(forKey: "id") as? Int
+                movie.id = data.value(forKey: "id") as? Double
                 movie.vote_average = data.value(forKey: "vote_average") as? Float
                 movie.popularity = data.value(forKey: "popularity") as? Float
                 movie.title = data.value(forKey: "title") as? String
@@ -95,7 +85,7 @@ class CoreDataRepository {
         return moviesData.sorted(by: {$0.popularity ?? 0 > $1.popularity ?? 0})
     }
     
-    static func updateMovieImage(movieId: Int, movieImageData: Data, isBackDrop: Bool) {
+    static func updateMovieImage(movieId: Double, movieImageData: Data, isBackDrop: Bool) {
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         let fetchRequest:NSFetchRequest<NSFetchRequestResult> = NSFetchRequest.init(entityName: Constants.entityName)        
         let predicate = NSPredicate(format: "id = '\(movieId)'")
