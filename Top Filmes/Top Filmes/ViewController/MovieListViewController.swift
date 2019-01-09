@@ -101,6 +101,8 @@ class MovieListViewController: UIViewController, MoviesListDelegate {
                 self.configureRefreshControl()
                 
                 self.refreshControl.endRefreshing()
+                
+                return
             }
             
             self.messageNoDataLabel.alpha = 1
