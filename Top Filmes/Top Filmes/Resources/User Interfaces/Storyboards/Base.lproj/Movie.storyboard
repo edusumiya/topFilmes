@@ -18,7 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Não foi possivel realizar a consulta." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kUe-aO-kg1">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Não foi possivel realizar a consulta." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kUe-aO-kg1">
                                 <rect key="frame" x="72.666666666666686" y="357.66666666666669" width="269" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -42,14 +42,23 @@
                                     <constraint firstAttribute="height" id="O2s-Ef-aDi"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ocx-77-QFd">
+                                <rect key="frame" x="146.66666666666666" y="383" width="120.99999999999997" height="30"/>
+                                <state key="normal" title="Tente Novamente"/>
+                                <connections>
+                                    <action selector="tryAgain:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ECU-Sl-Hpw"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.098039215686274508" green="0.098039215686274508" blue="0.098039215686274508" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="5Wg-9t-6f0" secondAttribute="bottom" id="0ic-G1-4nt"/>
                             <constraint firstItem="kUe-aO-kg1" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="0xE-9a-cro"/>
+                            <constraint firstItem="Ocx-77-QFd" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Fgs-zI-9Dt"/>
                             <constraint firstItem="5Wg-9t-6f0" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Nxw-0h-7oA"/>
                             <constraint firstItem="kXB-VC-N1S" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="SJP-aI-q8A"/>
                             <constraint firstItem="5Wg-9t-6f0" firstAttribute="top" secondItem="kXB-VC-N1S" secondAttribute="bottom" id="SL9-IP-uyD"/>
+                            <constraint firstItem="Ocx-77-QFd" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="30" id="Yab-gz-GPN"/>
                             <constraint firstItem="kXB-VC-N1S" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="eCA-3Q-6Fa"/>
                             <constraint firstItem="kUe-aO-kg1" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="fK1-9s-OIF"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="kXB-VC-N1S" secondAttribute="trailing" id="m0z-ux-dtn"/>
@@ -71,6 +80,7 @@
                         <outlet property="moviesCollectionView" destination="5Wg-9t-6f0" id="wbV-yW-itS"/>
                         <outlet property="searchView" destination="kXB-VC-N1S" id="EoH-yv-8EQ"/>
                         <outlet property="searchViewHeight" destination="O2s-Ef-aDi" id="woc-Co-WYf"/>
+                        <outlet property="tryAgainButton" destination="Ocx-77-QFd" id="2ti-35-j38"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
