@@ -371,8 +371,8 @@
 			isa = PBXGroup;
 			children = (
 				A065045C21E4400500F44CF9 /* Helper */,
-				A07FB2CA21E14C6900FAE76B /* Info.plist */,
 				A065045921E43FC800F44CF9 /* Mocks */,
+				A0A0B45821E58C4A00A48865 /* Supporting Files */,
 				A098BAB021E50EA9001F78AD /* View */,
 				A065045821E43F9900F44CF9 /* ViewController */,
 			);
@@ -420,6 +420,14 @@
 				A098BAB421E537AE001F78AD /* Localizable.strings */,
 			);
 			path = Strings;
+			sourceTree = "<group>";
+		};
+		A0A0B45821E58C4A00A48865 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				A07FB2CA21E14C6900FAE76B /* Info.plist */,
+			);
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -810,7 +818,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = "Top FilmesTests/Info.plist";
+				INFOPLIST_FILE = "Top FilmesTests/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "sumiya.Top-FilmesTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -827,7 +835,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = "Top FilmesTests/Info.plist";
+				INFOPLIST_FILE = "Top FilmesTests/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "sumiya.Top-FilmesTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";

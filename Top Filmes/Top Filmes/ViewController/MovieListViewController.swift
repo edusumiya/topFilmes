@@ -10,7 +10,10 @@ import UIKit
 import Reachability
 
 class MovieListViewController: UIViewController, MoviesListDelegate {
-    
+    struct Constants {
+        static let storyboardName: String = "Movie"
+        static let movieDetailViewControllerName = "MovieDetailViewController"
+    }
     // MARK: - Properties
     @IBOutlet var moviesCollectionView: UICollectionView!
     @IBOutlet var searchView: UIView!
@@ -31,8 +34,6 @@ class MovieListViewController: UIViewController, MoviesListDelegate {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //CoreDataRepository.clearStorage()
 
         configureUI()
         requestData(page: currentPage, pullRequest: false)
@@ -133,8 +134,8 @@ class MovieListViewController: UIViewController, MoviesListDelegate {
     }
     
     func didSelectMovie(movie: MovieModel) {
-        let storyboard = UIStoryboard(name: "Movie", bundle: nil)
-        guard let movieDetailViewController = storyboard.instantiateViewController(withIdentifier: "MovieDetailViewController") as? MovieDetailViewController else {
+        let storyboard = UIStoryboard(name: Constants.storyboardName, bundle: nil)
+        guard let movieDetailViewController = storyboard.instantiateViewController(withIdentifier: Constants.movieDetailViewControllerName) as? MovieDetailViewController else {
             return
         }
         
