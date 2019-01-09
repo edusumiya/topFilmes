@@ -18,9 +18,11 @@ class MovieListViewController: UIViewController, MoviesListDelegate {
     @IBOutlet var moviesCollectionView: UICollectionView!
     @IBOutlet var searchView: UIView!
     @IBOutlet var searchViewHeight: NSLayoutConstraint!
+    @IBOutlet var messageNoDataLabel: UILabel!
+    
     private var searchController: UISearchController!
     private let refreshControl = UIRefreshControl()
-
+    
     // MARK: - DataSource
     var moviesDataSource: MoviesListDatasourceAndDelegates?
 
@@ -34,6 +36,8 @@ class MovieListViewController: UIViewController, MoviesListDelegate {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        CoreDataRepository.clearStorage()
 
         configureUI()
         requestData(page: currentPage, pullRequest: false)
@@ -76,6 +80,7 @@ class MovieListViewController: UIViewController, MoviesListDelegate {
     fileprivate func requestData(page: Int, pullRequest: Bool) {
         TopMoviesBusiness.getMovies(page: page, success: {(movies) in
             if let moviesResults = movies.results {
+                self.messageNoDataLabel.alpha = 0
                 if self.moviesDataSource == nil {
                     self.moviesDataSource = MoviesListDatasourceAndDelegates(moviesCollectionView: self.moviesCollectionView, moviesList: moviesResults, delegate: self)
                 } else {
@@ -97,8 +102,10 @@ class MovieListViewController: UIViewController, MoviesListDelegate {
                 
                 self.refreshControl.endRefreshing()
             }
+            
+            self.messageNoDataLabel.alpha = 1
         }) { (error) in
-            print(error)
+            self.messageNoDataLabel.alpha = 1
         }
     }
     
